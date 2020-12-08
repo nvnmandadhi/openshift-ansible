@@ -1,0 +1,23 @@
+# - name: install certain python modules for docker
+#   user: naveenmandadhi
+#   hosts: all
+#   pip:
+#     name: "{{ item.name }}"
+#     version: "{{ item.version }}"
+#     state: present
+#   with_items:
+#   - { name: docker, version: 2.0.0 }
+#   - { name: docker-py, version: 1.10.6 }
+
+- hosts: all
+  tasks:
+    - name: install packages
+      become: yes
+      become_user: naveenmandadhi
+      become_method: su
+      become_ask_pass: false
+      dnf:
+        state: present
+        name:
+          - tcsh
+          - htop
